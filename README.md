@@ -122,7 +122,7 @@
     
   1.将词嵌入与3个训练后的矩阵相乘得到一个Query向量、一个Key向量和一个Value向量。
   
-  ![](https://github.com/Elliotter/Bert-/blob/master/pic/self%20attention%20two.jpeg)
+  ![](https://github.com/Elliotter/Bert-/blob/master/pic/Model%20total%20two.png)
   
   2.向量 q1, k1 做点乘
 
@@ -132,7 +132,20 @@
   
   ![](https://github.com/Elliotter/Bert-/blob/master/pic/self%20attention%20four.jpeg)
   
-  用得分比例 0.88，0.12 乘以 v1, v2 值 Values 得到一个加权后的值。将这些值加起来得到 z1。这就是这一层的输出。仔细感受一下，用 Q, K去计算一个  thinking对与thinking, machine的权重，用权重乘以thinking,machine的V得到加权后的thinking,machine的V,最后求和得到针对各单词的输出Z。
+  4.将带权重的各个value向量加起来产生在这个位置上self-attention层的输出。
+  
+  ![](https://github.com/Elliotter/Bert-/blob/master/pic/self%20attention%20five.jpeg)
+  
+  5.整体流程：
+   
+  ![](https://github.com/Elliotter/Bert-/blob/master/pic/self%20attention%20six.jpeg)
+  
+  ![](https://github.com/Elliotter/Bert-/blob/master/pic/self%20attention%20seven.jpeg)
+  
+  6.如何理解？
+  
+  第一：Q * KT 是不同位置元素相乘的结果
+  第二：Softmax() * V 是指利用第一步位置之间关系分布权重作用在原始的单词向量上
   
   比如说你的输入是一句话 "i have a dream" 总共4个单词，这里就会形成一张4x4的注意力机制的图,这样一来，每一个单词就对应每一个单词有一个权重,
   
