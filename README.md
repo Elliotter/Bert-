@@ -173,6 +173,36 @@
   
   ![](https://github.com/Elliotter/Bert-/blob/master/pic/multi-head%20seven.png)
 
+* **Masked Multi-head Attention**
+  
+  masked存在与Encoder与Decoder的协同工作有关，详见Decoder
+  
+* **Decoder**
+  
+  一、将上面编码器的输出转换成一组向量K和V
+  
+  ![](https://github.com/Elliotter/Bert-/blob/master/pic/decoder%20one.gif)
+  
+  
+  二、每一个时间步，解码器会输出翻译后的一个单词。
+
+  ![](https://github.com/Elliotter/Bert-/blob/master/pic/decoder%20two.gif)
+
+  思考：
+  1.为什么将输出单词要经过Masked multi-head attention而不直接与Encode模块一起输入？
+  
+  multi-head attention把原先word embedding矩阵通过引入注意力机制，转换成一个另外一个矩阵，在这个矩阵中，每个单词之间都是有不同的权重关系的，或者说单词之间的相互影响也考虑了进来，往深层次说就是关注了语义，使用Mask后，单词Q * K的权重（注意力）分布只会和之前一个单词有关，这样设计目的是为了让模型在适应在不知道未来信息前提下，根据现有信息做出判断
+  
+ ![](https://github.com/Elliotter/Bert-/blob/master/pic/Mask%20one.jpg)
+  
+  2.如何理解将输出编码转换成K V编码一起输入进Decoder
+  
+  Encoder的输出是包含着当前输入语句位置、语义等很多信息的映射关系，我们把输入与输出通过这个映射关系关联起来，前一个单词通过这层映射关系来预测下一个单词，与Rnn中的状态很相似。
+  
+  疑问：
+  
+  关于模型Decoder output作为输入部分细节具体细节部分仍然不够清楚，训练时候是结果语句单个单词一个个叠加输入还是整段word embedding作为输入？经过masked中细节呢？
+
 * **Resnet**
 　　在每个编码器中的每个子层(self-attention, ffnn)在其周围都有一个残差连接，还伴随着一个规范化步骤。
   
@@ -187,10 +217,11 @@
   残差学习解决了随网络深度增加带来的退化问题，残差网络更容易优化，收敛更快，这里不具体讨论
 
 * **Position-wise Feed-Forward Networks（FFN）**
-
-在进行了Attention操作之后，encoder和decoder中的每一层都包含了一个全连接前向网络，对每个position的向量分别进行相同的操作，包括两个线性变换和一个ReLU激活输出：
   
-  ![](https://raw.githubusercontent.com/Elliotter/Bidirectional-Encoder-Representation-From-Transformers/master/FFN.png)
+  ![](https://github.com/Elliotter/Bert-/blob/master/pic/FFN%20one.png)
+  
+  思考：FFN的作用是啥？详细的网络连接示例？
+  缺少
 
 ## BERT模型
 * **模型架构**
