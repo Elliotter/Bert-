@@ -3,7 +3,7 @@
 
       BERT基本上就是一个训练好的Transformer编码器栈，
   
-  ![](https://github.com/Elliotter/Bert-/blob/master/pic/bert%20one.png)
+  ![](https://raw.githubusercontent.com/Elliotter/Transformer/master/pic/bert%20one.png)
   
   1.**BERT BASE:**  
   
@@ -15,9 +15,11 @@
       
       其中：Bert中层数（即transformer的块数）为 L，隐藏层大小为 H,self-attention头数量为 A
   
-  ![](https://github.com/Elliotter/Bert-/blob/master/pic/bert%20two.png)
+  ![](https://raw.githubusercontent.com/Elliotter/Transformer/master/pic/bert%20two.png)
   
   **注意：只是运用Transformer的编码器，解码器并未使用**
+  
+---  
   
 * **BERT的输入**
    
@@ -25,9 +27,9 @@
        
        每一层都要经过自注意力层和前馈网络，然后在将其交给下一个编码器
     
-  ![](https://github.com/Elliotter/Bert-/blob/master/pic/bert%20input%20one.png)
+  ![](https://raw.githubusercontent.com/Elliotter/Transformer/master/pic/bert%20input%20one.png)
   
-  ![](https://github.com/Elliotter/Bert-/blob/master/pic/bert%20input%20two.png)
+  ![](https://raw.githubusercontent.com/Elliotter/Transformer/master/pic/bert%20input%20two.png)
   
        BERT的输入主要是由次块嵌入、段嵌入、位置嵌入求和组成，具体来说：
        
@@ -44,8 +46,10 @@
            句子A的嵌入，在第二个句子中添加句子B的嵌入
            
        (5) 对于单个句子的输入，我们用句子A嵌入
-  
-  ![](https://github.com/Elliotter/Bert-/blob/master/pic/bert%20input%20three.png)
+
+---
+	   
+  ![](https://raw.githubusercontent.com/Elliotter/Transformer/master/pic/bert%20input%20three.png)
     
 * **BERT的输出**
 
@@ -53,9 +57,9 @@
       
       也就是[CLS]符号代替的位置。
       
-  ![](https://github.com/Elliotter/Bert-/blob/master/pic/bert%20output%20one.png)
+  ![](https://raw.githubusercontent.com/Elliotter/Transformer/master/pic/bert%20output%20one.png)
   
-  ![](https://github.com/Elliotter/Bert-/blob/master/pic/bert%20output%20two.png)
+  ![](https://raw.githubusercontent.com/Elliotter/Transformer/master/pic/bert%20output%20two.png)
 
 * **BERT训练与使用**
      
@@ -63,7 +67,7 @@
          
         Mask LM 是指随机的遮蔽一些输入的单词，类似完形填空任务，最后预测被遮蔽的词块，
          
-   ![](https://github.com/Elliotter/Bert-/blob/master/pic/bert%20train%20one.png)
+   ![](https://raw.githubusercontent.com/Elliotter/Transformer/master/pic/bert%20train%20one.png)
    
         使用Mask带来两个问题：
         
@@ -81,7 +85,7 @@
    
   2.给定两个句子（A和B）， B可能是接在A后面出现的句子吗
    
-   ![](https://github.com/Elliotter/Bert-/blob/master/pic/bert%20train%20two.png)
+   ![](https://raw.githubusercontent.com/Elliotter/Transformer/master/pic/bert%20train%20two.png)
       
          示例：
          
@@ -95,7 +99,7 @@
    
   3.BERT在不同任务上的应用
    
-   ![](https://github.com/Elliotter/Bert-/blob/master/pic/bert%20train%20three.png)
+   ![](https://raw.githubusercontent.com/Elliotter/Transformer/master/pic/bert%20train%20three.png)
    
         MNLI: 给出一对句子，目标是预测第二个句子和第一个句子相比是蕴含，矛盾，还是中立
         
