@@ -13,7 +13,7 @@
    
   **模型主要分为Encoder和Decoder层**
   
-  ![](https://raw.githubusercontent.com/Elliotter/Bidirectional-Encoder-Representation-From-Transformers/master/att1.png)
+  ![](https://raw.githubusercontent.com/Elliotter/Bidirectional-Encoder-Representation-From-Transformers/master/pic/Model total one.png)
   
   **注：** 
   
@@ -27,7 +27,7 @@
   
   2.为什么是最后一层的Encoder作为Decoder的输入
   
-  ![](https://raw.githubusercontent.com/Elliotter/Bidirectional-Encoder-Representation-From-Transformers/master/attention%20model.png)
+  ![](https://raw.githubusercontent.com/Elliotter/Bidirectional-Encoder-Representation-From-Transformers/master/pic/Model total two.png)
 
   
   **Encoder**: Encoder有N=6层，每层包括两个sub-layers:
@@ -63,7 +63,7 @@
   
   Position Embedding 的公式：
   
-  ![](https://raw.githubusercontent.com/Elliotter/Bidirectional-Encoder-Representation-From-Transformers/master/Position_embedding.jpeg)
+  ![](https://raw.githubusercontent.com/Elliotter/Bidirectional-Encoder-Representation-From-Transformers/master/pic/Position embedding one.jpeg)
   
   其中 pos:单词在句子中的index， i:dimension index，demodel 表示位置向量的维度
   
