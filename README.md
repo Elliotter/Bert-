@@ -109,11 +109,11 @@
     
   假设下面的句子是我们想要翻译的句子:
     
-　　 “The animal didn't cross the street because it was too tired”
+　“The animal didn't cross the street because it was too tired”
 　　
   这句话中的“it”指代的是什么?是街道还是动物?这对人类来说是一个简单的问题，但对算法来说就不那么简单了。当模型处理每个单词(输入序列中的每个位置)时，自注意力能够捕捉该单词与输入序列中的其他位置上的单词的联系来寻找线索，以帮助更好地编码该单词。
   
-  ![](https://raw.githubusercontent.com/Elliotter/Bidirectional-Encoder-Representation-From-Transformers/master/att2.png)
+  ![](https://github.com/Elliotter/Bert-/blob/master/pic/self%20attention%20one.png)
     
 **2.Self-Attention：**
 
@@ -121,15 +121,15 @@
     
   1.将词嵌入与3个训练后的矩阵相乘得到一个Query向量、一个Key向量和一个Value向量。
   
-  ![](https://raw.githubusercontent.com/Elliotter/Bidirectional-Encoder-Representation-From-Transformers/master/step%20two.jpeg)
+  ![](https://github.com/Elliotter/Bert-/blob/master/pic/self%20attention%20two.jpeg)
   
   2.向量 q1, k1 做点乘
 
-  ![](https://raw.githubusercontent.com/Elliotter/Bidirectional-Encoder-Representation-From-Transformers/master/step%20three.jpeg)
+  ![](https://github.com/Elliotter/Bert-/blob/master/pic/self%20attention%20three.jpeg)
   
   3.对该得分进行规范、softmax
   
-  ![](https://raw.githubusercontent.com/Elliotter/Bidirectional-Encoder-Representation-From-Transformers/master/step%20five.jpeg)
+  ![](https://github.com/Elliotter/Bert-/blob/master/pic/self%20attention%20four.jpeg)
   
   用得分比例 0.88，0.12 乘以 v1, v2 值 Values 得到一个加权后的值。将这些值加起来得到 z1。这就是这一层的输出。仔细感受一下，用 Q, K去计算一个  thinking对与thinking, machine的权重，用权重乘以thinking,machine的V得到加权后的thinking,machine的V,最后求和得到针对各单词的输出Z。
   
