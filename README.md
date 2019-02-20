@@ -145,26 +145,50 @@
   
   第二：Softmax() * V 是指利用第一步位置之间关系分布权重作用在原始的单词向量上，体现单词之间关系
 
-  **3.Multi-head Attention**
+* **3.Multi-head Attention**
 
   **1.Multi-head Attention是啥？**
   
-  Multi-Head Attention就是把Scaled Dot-Product Attention的过程做H次，然后把输出Z合起来。论文中，它的结构图如下：
+  对于多头自注意力，我们有多组Query/Key/Value权重矩阵，每一个都是随机初始化的。然后经过训练，每个权重矩阵被用来将输入向量投射到不同的表示子空间。
+  
+  ![](https://github.com/Elliotter/Bert-/blob/master/pic/multi-head%20one.png)
 
-![](https://raw.githubusercontent.com/Elliotter/Bidirectional-Encoder-Representation-From-Transformers/master/multi-head%20attention.png)
+  用不同的权重矩阵做8次不同的计算得到8个不同的Z矩阵。
+  
+  ![](https://github.com/Elliotter/Bert-/blob/master/pic/multi-head%20two.png)
 
-    我们还是以上面的形式来解释：
-    
-![](https://raw.githubusercontent.com/Elliotter/Bidirectional-Encoder-Representation-From-Transformers/master/ex3.jpeg)
-
-   注：不确定重复执行是指什么？定义多个Wq Wk Wv吗？
-
-![](https://raw.githubusercontent.com/Elliotter/Bidirectional-Encoder-Representation-From-Transformers/master/ex4.jpeg)
-
-为了使得输出与输入结构对标 乘以一个线性W0 得到最终的 Z
+  把8个矩阵拼接起来然后用一个额外的权重矩阵与之相乘
+  
+  ![](https://github.com/Elliotter/Bert-/blob/master/pic/multi-head%20three.png)
+  
+  总体上来看
+  
+  ![](https://github.com/Elliotter/Bert-/blob/master/pic/multi-head%20three.png)
    
-* **Position-wise Feed-Forward Networks（位置全链接前馈网络——MLP变形）**
-  在进行了Attention操作之后，encoder和decoder中的每一层都包含了一个全连接前向网络，对每个position的向量分别进行相同的操作，包括两个线性变换和一个ReLU激活输出：
+  **2.Multi-head Attention作用**
+  
+  个人理解：如果一次attention是某个角度的挖掘单词之间的潜在关联，那么8个attention是从8个角度观察，有了8个“眼睛”，使得观察更加全面
+  
+  ![](https://github.com/Elliotter/Bert-/blob/master/pic/multi-head%20six.png)
+  
+  ![](https://github.com/Elliotter/Bert-/blob/master/pic/multi-head%20seven.png)
+
+* **Resnet**
+　　在每个编码器中的每个子层(self-attention, ffnn)在其周围都有一个残差连接，还伴随着一个规范化步骤。
+  
+  ![](https://github.com/Elliotter/Bert-/blob/master/pic/resnet%20one.png)
+  
+  ![](https://github.com/Elliotter/Bert-/blob/master/pic/resnet%20two.png)
+
+  ![](https://github.com/Elliotter/Bert-/blob/master/pic/resnet%20three.png)
+  
+  思考：残差网络的作用？
+  
+  残差学习解决了随网络深度增加带来的退化问题，残差网络更容易优化，收敛更快，这里不具体讨论
+
+* **Position-wise Feed-Forward Networks（FFN）**
+
+在进行了Attention操作之后，encoder和decoder中的每一层都包含了一个全连接前向网络，对每个position的向量分别进行相同的操作，包括两个线性变换和一个ReLU激活输出：
   
   ![](https://raw.githubusercontent.com/Elliotter/Bidirectional-Encoder-Representation-From-Transformers/master/FFN.png)
 
