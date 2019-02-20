@@ -1,13 +1,3 @@
-# Bidirectional Encode Representation From Transformers
-## BERT模型介绍
-
-  论文 | 备注
-  --- | ---
-  [Attention Is All Your Need](https://arxiv.org/abs/1706.03762) | Google Attention
-  [BERT training of Deep Bidirectional Transformers for Language Understanding](https://arxiv.org/pdf/1810.04805.pdf) | Bert
-  [细讲Attention is all your need](https://cloud.tencent.com/developer/article/1377062) | 阿里云社区
-  [一文读懂Attention](https://yq.aliyun.com/articles/342508?utm_content=m_39938) | 阿里云
-
 ## Transformer模型
 * **总体模型**
    
@@ -227,3 +217,13 @@
 ## 总结
 
    以上是Transformer的基本架构，基于Transformer有很多的变种，比如Bert，这些会单独列开介绍
+   
+## 参考
+
+  论文 | 备注
+  --- | ---
+  [Attention Is All Your Need](https://arxiv.org/abs/1706.03762) | Google Attention
+  [BERT training of Deep Bidirectional Transformers for Language Understanding](https://arxiv.org/pdf/1810.04805.pdf) | Bert
+  [细讲Attention is all your need](https://cloud.tencent.com/developer/article/1377062) | 阿里云社区
+  [一文读懂Attention](https://yq.aliyun.com/articles/342508?utm_content=m_39938) | 阿里云
+  [The Illustrated Transformer](https://jalammar.github.io/illustrated-transformer/) | Jay Alammar的博客
