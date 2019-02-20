@@ -105,20 +105,17 @@
 
 * **Self Attention**
 
-**1.Self-Attention是什么？**
+**1.自注意力是什么？**
     
   假设下面的句子是我们想要翻译的句子:
     
 　   “The animal didn't cross the street because it was too tired”
-　　
   
   这句话中的“it”指代的是什么?是街道还是动物?这对人类来说是一个简单的问题，但对算法来说就不那么简单了。当模型处理每个单词(输入序列中的每个位置)时，自注意力能够捕捉该单词与输入序列中的其他位置上的单词的联系来寻找线索，以帮助更好地编码该单词。
   
   ![](https://github.com/Elliotter/Bert-/blob/master/pic/self%20attention%20one.png)
     
-**2.Self-Attention：**
-
-  如何计算自注意力？
+**2.如何计算自注意力？**
     
   1.将词嵌入与3个训练后的矩阵相乘得到一个Query向量、一个Key向量和一个Value向量。
   
@@ -134,32 +131,25 @@
   
   4.将带权重的各个value向量加起来产生在这个位置上self-attention层的输出。
   
-  ![](https://github.com/Elliotter/Bert-/blob/master/pic/self%20attention%20five.jpeg)
+  ![](https://github.com/Elliotter/Bert-/blob/master/pic/self%20attention%20five.png)
   
   5.整体流程：
    
-  ![](https://github.com/Elliotter/Bert-/blob/master/pic/self%20attention%20six.jpeg)
+  ![](https://github.com/Elliotter/Bert-/blob/master/pic/self%20attention%20six.png)
   
-  ![](https://github.com/Elliotter/Bert-/blob/master/pic/self%20attention%20seven.jpeg)
+  ![](https://github.com/Elliotter/Bert-/blob/master/pic/self%20attention%20seven.png)
   
   6.如何理解？
   
   第一：Q * KT 是不同位置元素相乘的结果
-  第二：Softmax() * V 是指利用第一步位置之间关系分布权重作用在原始的单词向量上
   
-  比如说你的输入是一句话 "i have a dream" 总共4个单词，这里就会形成一张4x4的注意力机制的图,这样一来，每一个单词就对应每一个单词有一个权重,
-  
-![](https://raw.githubusercontent.com/Elliotter/Bidirectional-Encoder-Representation-From-Transformers/master/ex1.jpeg)
-  
-  注意encoder里面是叫self-attention，decoder里面是叫masked self-attention。这里的masked就是要在做language modelling（或者像翻译）的时候，不给模型看到未来的信息。
-  
-  ![](https://raw.githubusercontent.com/Elliotter/Bidirectional-Encoder-Representation-From-Transformers/master/ex2.jpeg)
-  
-  详细来说，i作为第一个单词，只能有和i自己的attention。have作为第二个单词，有和i, have 两个attention。 a 作为第三个单词，有和i,have,a 前面三个单词的attention。到了最后一个单词dream的时候，才有对整个句子4个单词的attention。
+  第二：Softmax() * V 是指利用第一步位置之间关系分布权重作用在原始的单词向量上，体现单词之间关系
 
   **3.Multi-head Attention**
 
-    Multi-Head Attention就是把Scaled Dot-Product Attention的过程做H次，然后把输出Z合起来。论文中，它的结构图如下：
+  **1.Multi-head Attention是啥？**
+  
+  Multi-Head Attention就是把Scaled Dot-Product Attention的过程做H次，然后把输出Z合起来。论文中，它的结构图如下：
 
 ![](https://raw.githubusercontent.com/Elliotter/Bidirectional-Encoder-Representation-From-Transformers/master/multi-head%20attention.png)
 
