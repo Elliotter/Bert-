@@ -107,13 +107,14 @@
 
   **1.自注意力是什么？**
     
-  假设下面的句子是我们想要翻译的句子:
+     假设下面的句子是我们想要翻译的句子:
     
-　   “The animal didn't cross the street because it was too tired”
-  
-  这句话中的“it”指代的是什么?是街道还是动物?这对人类来说是一个简单的问题，但对算法来说就不那么简单了。当模型处理每个单词(输入序列中的每个位置)时，自注意力能够捕捉该单词与输入序列中的其他位置上的单词的联系来寻找线索，以帮助更好地编码该单词。
+　        “The animal didn't cross the street because it was too tired”
   
   ![](https://github.com/Elliotter/Bert-/blob/master/pic/self%20attention%20one.png)
+  
+   这句话中的“it”指代的是什么?是街道还是动物?这对人类来说是一个简单的问题，但对算法来说就不那么简单了。当模型处理每个单词(输入序列中的每个位置)
+   时，自注意力能够捕捉该单词与输入序列中的其他位置上的单词的联系来寻找线索，以帮助更好地编码该单词。
     
   **2.如何计算自注意力？**
     
@@ -204,7 +205,8 @@
   关于模型Decoder output作为输入部分细节具体细节部分仍然不够清楚，训练时候是结果语句单个单词一个个叠加输入还是整段word embedding作为输入？经过masked中细节呢？
 
 * **Resnet**
-　　在每个编码器中的每个子层(self-attention, ffnn)在其周围都有一个残差连接，还伴随着一个规范化步骤。
+
+　在每个编码器中的每个子层(self-attention, ffnn)在其周围都有一个残差连接，还伴随着一个规范化步骤。
   
   ![](https://github.com/Elliotter/Bert-/blob/master/pic/resnet%20one.png)
   
@@ -221,81 +223,7 @@
   ![](https://github.com/Elliotter/Bert-/blob/master/pic/FFN%20one.png)
   
   疑问：FFN的作用是啥？详细的网络连接示例？
+  
+## 总结
 
-## BERT模型
-* **模型架构**
-  
-  BERT是一个多层的双向编码Transformer，在Bert中层数（即transformer的块数）几位L，隐藏层大小为H,self-attention头数量记为A
-  
-  (1) BertBase: L = 12, H = 768, A = 12,总参数110M
-  (2) BertLarge:L = 24, H = 1024, A = 16,总参数340M
-  
-  BertBase模型尺寸跟OpenAI GPT模型尺寸一样大，Bert使用双向结构，OpenAI GPT是单向（从左到右）的，前者常被称为Transformer编码器，后者常被称为Trasformer的解码器，由于文本生成。
-  
-  ![](https://raw.githubusercontent.com/Elliotter/Bidirectional-Encoder-Representation-From-Transformers/master/bert%20structure.png)
-  
-* **BERT的输入表示
-
-    BERT的输入主要是由次块嵌入、段嵌入、位置嵌入求和组成，具体来说：
-    (1) 词嵌入
-    (2) 位置嵌入，最长支持512
-    (3) 每一个序列的第一个词始终是特殊分类嵌入(CLS)，对应该词块的最后隐藏状态（Transformer的输出）被用做分类任务的输出聚合标志，对于非分类的任务，通常CLS会被忽略。
-    (4) 句子被打包成单个序列，我们以两种方式来区分句子，首先用分割符分割句子，第二个是在第一个句子每个词块中添加句子A的嵌入，在第二个句子中添加句子B的嵌入
-    (5) 对于单个句子的输入，我们用句子A嵌入
- * **预训练任务**
-     我们使用两个新的无监督预测任务来预训练Bert
-     (1) Masked LM
-         Mask LM 是指随机的遮蔽一些输入的单词，类似完形填空任务，最后预测被遮蔽的词块，但是他带来两个问题：
-         一 是Mask词块在微调的时候看不见，我们做了一些缓解，生成器并不总是用 MASK 去替换选择的词：
-            80%的时间用Mask替换选择的词，比如我的狗是毛茸茸的！我的狗是MASK。
-            10%的时间：用随机词体替换选择的词，比如我的狗是毛茸茸的! 我的狗是苹果。
-            10%的时间：让选择的词保持不变。比如我的狗是毛茸茸的！我的狗是毛茸茸的！
-            
-            Transformer编码器不知道下一个它要预测的单词已经被随机单词替换，因此它会被迫保持每个输入词块的分布式的语境表示。另外，由于随机替换在所有             词块中只有1.5%的几率发生，着不会对模型的语言理解能力产生影响。
-         二 在使用MLM之后，每个批次只会有15%词块被预测，为了让模型收敛，训练时间回增加
-     （2）下一句的预测
-          很多的任务侧重于句子之间的语义理解，我们预训练了一个二值化下一个句子的预测任务，比如选择句子A和B作为预训练样本：B由百分之五十的可能性是A实际的下一句，也有百分之五十的可能性是语料库中的随机句子。
-          输入=[CLS] the man went to [MASK] store [ SEP] he bought a gallon [MASK] milk [SEP]
-          标记=IsNext
-          输入=[CLS] the man [MASK] to the store [SEP] penguin [MASK] are flight #less birds [SEP]
-          标记=NotNext
- * **预训练过程
-   
- * **微调过程**
-   (1) 命名体识别
-       在示例数据集中CoNLL命名体识别中，包含200k训练单词，他们被标记成人员、组织、地点、杂项或其他（非命名体）
-       为了进行微调，我们最终将隐藏特征表示提供给每个词块i到NER标签集上的分类层。每个单词的预测并不依赖于周围的预测。为了使这个于WordPiece词块兼容，  我们将每个CoNLL词块化单词输入到我们的WordPiece词块化器，并且使用与第一个子标记相关的隐藏状态作为分类器的输入。比如：
-       Jim Hen ##son was a puppet ##eer
-       对X没有做预测，因为WordPiece词块边界是输入的已知部分，对训练和预测都做了类似的处理。可视化图在图3（d）中呈现。一种事例WordPiece模型被用于NER,而非事例模型被用于其他任务之中。
-       
-       
-            
-## 模型分析
-## BERT应用场景
-* **chinese sentences multiclass classficition**
-
-  [bert-fine-tuning-for-chinese-multiclass-classification](https://github.com/maksna/bert-fine-tuning-for-chinese-multiclass-classification)
- 
-  label | text
-  --- | ---
-  0 | 黄蜂vs湖人首发：科比带伤战保罗
-  1 | 王杰明：家博会未来将深入民心
-  2 | 组图：威尼斯电影节开幕
-  
-  与其他模型的对比：
-  
-* **QA TASK**
-
-  [BERT-for-Chinese-Question-Answering](https://github.com/xzp27/BERT-for-Chinese-Question-Answering)
-  
-* **NER TASK**
-
-  [ner_bert](https://github.com/sberbank-ai/ner-bert)
-  
-* **Attribution Exaction**
-
-  [BERT-AttributeExtraction](https://github.com/sakuranew/BERT-AttributeExtraction)
-  
-* **Relation Exaction** 
-  
-  暂缺
+   以上是Transformer的基本架构，基于Transformer有很多的变种，比如Bert，这些会单独列开介绍
