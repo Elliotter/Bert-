@@ -220,10 +220,12 @@
    
 ## 参考
 
-  论文 | 备注
-  --- | ---
-  [Attention Is All Your Need](https://arxiv.org/abs/1706.03762) | Google Attention
-  [BERT training of Deep Bidirectional Transformers for Language Understanding](https://arxiv.org/pdf/1810.04805.pdf) | Bert
-  [细讲Attention is all your need](https://cloud.tencent.com/developer/article/1377062) | 阿里云社区
-  [一文读懂Attention](https://yq.aliyun.com/articles/342508?utm_content=m_39938) | 阿里云
-  [The Illustrated Transformer](https://jalammar.github.io/illustrated-transformer/) | Jay Alammar的博客
+  [Attention Is All Your Need](https://arxiv.org/abs/1706.03762)
+  
+  [BERT training of Deep Bidirectional Transformers for Language Understanding](https://arxiv.org/pdf/1810.04805.pdf)
+  
+  [细讲Attention is all your need](https://cloud.tencent.com/developer/article/1377062)
+  
+  [一文读懂Attention](https://yq.aliyun.com/articles/342508?utm_content=m_39938)
+  
+  [The Illustrated Transformer](https://jalammar.github.io/illustrated-transformer/) 
