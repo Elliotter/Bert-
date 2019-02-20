@@ -13,7 +13,7 @@
    
   **模型主要分为Encoder和Decoder层**
   
-  ![](https://raw.githubusercontent.com/Elliotter/Bidirectional-Encoder-Representation-From-Transformers/master/pic/Model total one.png)
+  ![](https://github.com/Elliotter/Bert-/blob/master/pic/Model%20total%20one.png)
   
   **注：** 
   
@@ -27,7 +27,7 @@
   
   2.为什么是最后一层的Encoder作为Decoder的输入
   
-  ![](https://raw.githubusercontent.com/Elliotter/Bidirectional-Encoder-Representation-From-Transformers/master/pic/Model total two.png)
+  ![](https://github.com/Elliotter/Bert-/blob/master/pic/Model%20total%20two.png)
 
   
   **Encoder**: Encoder有N=6层，每层包括两个sub-layers:
@@ -63,7 +63,7 @@
   
   Position Embedding 的公式：
   
-  ![](https://raw.githubusercontent.com/Elliotter/Bidirectional-Encoder-Representation-From-Transformers/master/pic/Position embedding one.jpeg)
+  ![](https://github.com/Elliotter/Bert-/blob/master/pic/Position%20embedding%20one.jpeg)
   
   其中 pos:单词在句子中的index， i:dimension index，demodel 表示位置向量的维度
   
@@ -97,11 +97,11 @@
    
    为什么选用sin+cos形式：
    
-   ![](https://raw.githubusercontent.com/Elliotter/Bidirectional-Encoder-Representation-From-Transformers/master/sin.jpeg)
+   ![](https://github.com/Elliotter/Bert-/blob/master/pic/Position%20embedding%20two.jpeg)
    
    位置p+k的向量可以表示成位置p的向量的线性变换，这提供了表达相对位置信息的可能性。
    
-   ![](https://raw.githubusercontent.com/Elliotter/Bidirectional-Encoder-Representation-From-Transformers/master/cos.jpeg)
+   ![](https://github.com/Elliotter/Bert-/blob/master/pic/Position%20embedding%20three.jpeg)
 
 * **Self Attention**
 
