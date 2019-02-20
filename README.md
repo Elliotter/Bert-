@@ -109,8 +109,9 @@
     
   假设下面的句子是我们想要翻译的句子:
     
-　“The animal didn't cross the street because it was too tired”
+　   “The animal didn't cross the street because it was too tired”
 　　
+  
   这句话中的“it”指代的是什么?是街道还是动物?这对人类来说是一个简单的问题，但对算法来说就不那么简单了。当模型处理每个单词(输入序列中的每个位置)时，自注意力能够捕捉该单词与输入序列中的其他位置上的单词的联系来寻找线索，以帮助更好地编码该单词。
   
   ![](https://github.com/Elliotter/Bert-/blob/master/pic/self%20attention%20one.png)
