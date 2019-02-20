@@ -105,7 +105,7 @@
 
 * **Self Attention**
 
-**1.自注意力是什么？**
+  **1.自注意力是什么？**
     
   假设下面的句子是我们想要翻译的句子:
     
@@ -115,7 +115,7 @@
   
   ![](https://github.com/Elliotter/Bert-/blob/master/pic/self%20attention%20one.png)
     
-**2.如何计算自注意力？**
+  **2.如何计算自注意力？**
     
   1.将词嵌入与3个训练后的矩阵相乘得到一个Query向量、一个Key向量和一个Value向量。
   
@@ -145,7 +145,7 @@
   
   第二：Softmax() * V 是指利用第一步位置之间关系分布权重作用在原始的单词向量上，体现单词之间关系
 
-* **3.Multi-head Attention**
+* **Multi-head Attention**
 
   **1.Multi-head Attention是啥？**
   
@@ -220,13 +220,12 @@
   
   ![](https://github.com/Elliotter/Bert-/blob/master/pic/FFN%20one.png)
   
-  思考：FFN的作用是啥？详细的网络连接示例？
-  缺少
+  疑问：FFN的作用是啥？详细的网络连接示例？
 
 ## BERT模型
 * **模型架构**
   
-  BERT是一个多层的双向编码Transformer，在Bert中 层数（即transformer的块数）几位L，隐藏层大小为H,self-attention头数量记为A
+  BERT是一个多层的双向编码Transformer，在Bert中层数（即transformer的块数）几位L，隐藏层大小为H,self-attention头数量记为A
   
   (1) BertBase: L = 12, H = 768, A = 12,总参数110M
   (2) BertLarge:L = 24, H = 1024, A = 16,总参数340M
